@@ -1,9 +1,20 @@
+import Button from "@/components/Button";
+import Message from "./Message";
+
 const UserById = ({ params, searchParams }: any) => {
+  console.log("hey");
   return (
     <div>
-      <pre>{JSON.stringify({ params }, null, 2)}</pre>
-      <pre>{JSON.stringify({ searchParams }, null, 2)}</pre>
-      Running User By Id
+      <Message>
+        <pre>{JSON.stringify({ params }, null, 2)}</pre>
+      </Message>
+      <Message>
+        <pre>{JSON.stringify({ searchParams }, null, 2)}</pre>
+      </Message>
+      <Button>
+        <button>Click Me</button>
+      </Button>
+      <h1> Running User By Id</h1>
     </div>
   );
 };
