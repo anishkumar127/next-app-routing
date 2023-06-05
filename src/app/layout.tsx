@@ -1,3 +1,4 @@
+import Link from "next/link";
 import "./globals.css";
 import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
@@ -14,10 +15,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-red-500`}>
+      <body className={`${inter.className} bg-white`}>
         <ul className="flex p-0 list-none">
-          <li className="m-10">Home</li>
-          <li className="m-10">User</li>
+          <li className="m-10">
+            <Link href="/">Home</Link>
+          </li>
+          <li className="m-10">
+            <Link prefetch={false} href="/users">
+              Users
+            </Link>
+          </li>
         </ul>
         {children}
         <hr />

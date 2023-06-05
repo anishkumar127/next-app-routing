@@ -1,19 +1,21 @@
+import axios from "axios";
 import Button from "@/components/Button";
 import Message from "./Message";
-
-const UserById = ({ params, searchParams }: any) => {
-  console.log("hey");
+const api = axios.create({
+  baseURL: "https://jsonplaceholder.typicode.com/",
+});
+const UserById = async ({ params, searchParams }: any) => {
+  console.log("Fetching users details...", params, searchParams);
+  let response;
+  try {
+    response = await api.get(`users/${params.id}`);
+    console.log(response.data);
+  } catch (error) {
+    console.error(error);
+  }
   return (
     <div>
-      <Message>
-        <pre>{JSON.stringify({ params }, null, 2)}</pre>
-      </Message>
-      <Message>
-        <pre>{JSON.stringify({ searchParams }, null, 2)}</pre>
-      </Message>
-      <Button>
-        <button>Click Me</button>
-      </Button>
+      <pre>{JSON.stringify(response?.data, null, 2)}</pre>
       <h1> Running User By Id</h1>
     </div>
   );

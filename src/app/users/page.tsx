@@ -1,5 +1,6 @@
 import axios from "axios";
 import Message from "./[id]/Message";
+import Link from "next/link";
 const api = axios.create({
   baseURL: "https://jsonplaceholder.typicode.com/",
 });
@@ -11,12 +12,17 @@ const page = async () => {
   } catch (error) {
     console.error(error);
   }
+
+  console.log("Fetching Response");
   return (
     <div>
       Running users page
-      <Message>{response?.data.length}</Message>
-      {response?.data.map((item) => (
-        <Message key={item.id}>{item.email}</Message>
+      {response?.data.map((item: any) => (
+        <div key={item.id}>
+          <Link prefetch={true} href={`/users/${item.id}`}>
+            {item.email}
+          </Link>
+        </div>
       ))}
     </div>
   );
